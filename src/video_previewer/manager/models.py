@@ -18,8 +18,7 @@ class Video(models.Model):
     preview = models.ImageField(
         width_field=100, height_field=100, null=True,
         blank=True, editable=False, upload_to='img/')
-    status = models.IntegerField(
-        max_length=1, choices=STATUS_CHOICES, default=3)
+    status = models.IntegerField(choices=STATUS_CHOICES, default=3)
     file = models.FileField(upload_to='video/')
 
 
