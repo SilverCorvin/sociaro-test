@@ -2,6 +2,8 @@ import uuid
 
 from django.db import models
 
+from manager.validators import validate_file_extension
+
 # Create your models here.
 
 
@@ -19,7 +21,8 @@ class Video(models.Model):
         width_field=100, height_field=100, null=True,
         blank=True, editable=False, upload_to='img/')
     status = models.IntegerField(choices=STATUS_CHOICES, default=3)
-    file = models.FileField(upload_to='video/')
+    file = models.FileField(
+        upload_to='video/', validators=[validate_file_extension])
 
     def __str__(self):
         return self.file.name
