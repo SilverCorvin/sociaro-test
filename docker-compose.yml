@@ -11,7 +11,7 @@ services:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=postgres
     ports:
-    - "5432:5432"
+      - "5432:5432"
 
   # Redis
   redis:
@@ -38,14 +38,29 @@ services:
     command: ./run_web.sh
     volumes:
       - .:/app
-    ports:
-      - "8000:8000"
+      - ./video_previewer/static:/static
+    expose:
+      - "8000"
     links:
       - db
       - rabbit
       - redis
     depends_on:
       - db
+
+  # Nginx
+  nginx:
+    restart: always
+    image: nginx:latest
+    hostname: nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./src:/src
+      - ./config/nginx:/etc/nginx/conf.d
+      - ./video_previewer/static:/static
+    depends_on:
+      - web
 
   worker:
     build:

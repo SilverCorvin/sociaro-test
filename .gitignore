@@ -58,3 +58,4 @@ docs/_build/
 .venv
 
 video_previewer/media/
+video_previewer/static/
