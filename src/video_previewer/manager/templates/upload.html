@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<form class="well form-horizontal" method="post" action="{% url 'manager:index' %}" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ form.non_field_errors }}
+  {% for field in form %}
+  <div class="form-group">
+    {{ field.errors }}
+    <label class="col-md-4 control-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+    <div class="col-md-4 inputGroupContainer">
+    <div class="input-group">
+        {{ field }}
+    </div>
+    </div>
+  </div>
+  {% endfor %}
+  <button class="btn btn-primary" type="submit">Send</button>
+</form>
+{% endblock %}

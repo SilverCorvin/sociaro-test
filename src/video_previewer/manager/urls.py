@@ -14,10 +14,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url
-from manager.views import UploadView, VideoLibraryView
 
+from manager.views import VideoUploadView, VideoLibraryView
+
+
+app_name = 'manager'
 urlpatterns = [
-    # url(r'^admin/', admin.site.urls),
-    url(r'index/$', UploadView.as_view(), name='index'),
-    url(r'status/$', VideoLibraryView.as_view(), name='status'),
+    url(r'index$', VideoUploadView.as_view(), name='index'),
+    url(r'status$', VideoLibraryView.as_view(), name='status'),
 ]

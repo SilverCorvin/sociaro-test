@@ -1,4 +1,5 @@
 from django.contrib import admin
+
 from manager.models import Video, VideoCategory
 
 # Register your models here.

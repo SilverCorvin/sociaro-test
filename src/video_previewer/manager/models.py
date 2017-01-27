@@ -21,6 +21,12 @@ class Video(models.Model):
     status = models.IntegerField(choices=STATUS_CHOICES, default=3)
     file = models.FileField(upload_to='video/')
 
+    def __str__(self):
+        return self.file.name
+
 
 class VideoCategory(models.Model):
     name = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.name
