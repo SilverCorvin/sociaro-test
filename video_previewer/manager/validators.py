@@ -6,4 +6,4 @@ def validate_file_extension(value):
     ext = os.path.splitext(value.name)[1]  # [0] returns path+filename
     valid_extensions = ['.avi', '.mp4']
     if not ext.lower() in valid_extensions:
-        raise ValidationError(u'Файл должен быть с расширением avi или mp4')
+        raise ValidationError(u'Файл должен быть формата avi или mp4')

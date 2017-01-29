@@ -1,11 +1,31 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-{% for video in object_list %}
-<p>{{ video.id }}</p>
-<p>{{ video.category }}</p>
-<p>{{ video.lentgth }}<p>
-<img src="{{video.url}}" />
-<p>{{ video.get_status_display }}</p>
-{% endfor %}
+<table class="table">
+    <thead>
+        <tr>
+            <th>#ID ролика</th>
+            <th>Категория ролика</th>
+            <th>Продолжительность</th>
+            <th>Превью</th>
+            <th>Статус</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for video in object_list %}
+        <tr>
+            <th>{{ forloop.counter }}</th>
+            <th>{{ video.category }}</th>
+            <th>{{ video.duration | date:"H:i:s" }}</th>
+            {% if video.preview %}
+            <th><a href="{{ video.preview.url }}" target="_blank"><img src="{{video.preview.url}}" height="100px" width="100px" /></a></th>
+            {% else %}
+            <th></th>
+            {% endif %}
+            <th>{{ video.get_status_display }}</th>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{% url 'manager:index' %}">Загрузить ещё</a>
 {% endblock %}
