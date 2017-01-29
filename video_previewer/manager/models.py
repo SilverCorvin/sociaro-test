@@ -17,7 +17,8 @@ class Video(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     category = models.ForeignKey('VideoCategory', on_delete=models.CASCADE)
     duration = models.TimeField(null=True, blank=True, editable=False)
-    preview = models.ImageField(null=True, blank=True, editable=False, upload_to='img/')
+    preview = models.ImageField(
+        null=True, blank=True, editable=False, upload_to='img/')
     status = models.IntegerField(choices=STATUS_CHOICES, default=2)
     file = models.FileField(
         upload_to='video/', validators=[validate_file_extension])
